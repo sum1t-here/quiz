@@ -7,32 +7,32 @@
       "Event Loop",
       "Callback Hell"
     ],
-    "correctAnswer": "Event Loop"
+    "correctAnswer": 2
   },
   {
     "question": "Which module in Node.js is used to create a web server?",
     "choices": ["http", "fs", "path", "util"],
-    "correctAnswer": "http"
+    "correctAnswer": 0
   },
   {
     "question": "What function is used to register event listeners in Node.js?",
     "choices": ["addListener", "on", "addEventListener", "attachEvent"],
-    "correctAnswer": "on"
+    "correctAnswer": 1
   },
   {
     "question": "Which method is used to emit an event in Node.js EventEmitter?",
     "choices": ["emitEvent", "trigger", "fire", "emit"],
-    "correctAnswer": "emit"
+    "correctAnswer": 3
   },
   {
     "question": "What is the default maximum number of listeners for a single EventEmitter instance in Node.js?",
     "choices": ["10", "50", "100", "Infinity"],
-    "correctAnswer": "10"
+    "correctAnswer": 0
   },
   {
     "question": "Which method is used to remove an event listener in Node.js?",
     "choices": ["removeListener", "off", "removeEventListener", "detachEvent"],
-    "correctAnswer": "removeListener"
+    "correctAnswer": 0
   },
   {
     "question": "What is the purpose of EventEmitter in Node.js?",
@@ -42,7 +42,7 @@
       "To facilitate inter-process communication",
       "To handle events and event-driven programming"
     ],
-    "correctAnswer": "To handle events and event-driven programming"
+    "correctAnswer": 3
   },
   {
     "question": "What function is used to execute a callback function after a specified delay?",
@@ -52,7 +52,7 @@
       "setImmediate",
       "process.nextTick"
     ],
-    "correctAnswer": "setTimeout"
+    "correctAnswer": 0
   },
   {
     "question": "In Node.js, what does EventEmitter.emit() do?",
@@ -62,7 +62,7 @@
       "Emits an event asynchronously",
       "Removes an event listener"
     ],
-    "correctAnswer": "Emits an event synchronously"
+    "correctAnswer": 1
   },
   {
     "question": "What is the main role of the event loop in Node.js?",
@@ -72,6 +72,6 @@
       "To manage asynchronous I/O operations",
       "To ensure single-threaded execution"
     ],
-    "correctAnswer": "To manage asynchronous I/O operations"
+    "correctAnswer": 2
   }
 ]

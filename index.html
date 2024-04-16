@@ -8,8 +8,11 @@
   <body>
     <h1>Node js Quiz</h1>
     <div id="quiz-container"></div>
+    <button id="submit-btn">Submit</button>
     <script>
       document.addEventListener('DOMContentLoaded', () => {
+        const submitButton = document.getElementById('submit-btn');
+        let score = 0;
         // Fetch quiz questions from the backend
         fetch('http://localhost:3000/quiz')
           .then((response) => response.json())
@@ -37,6 +40,62 @@
           .catch((error) => {
             console.error('Error fetching quiz:', error);
           });
+
+        // Handle submit button click
+        submitButton.addEventListener('click', () => {
+          const selectedAnswers = [];
+          const radioGroups = document.querySelectorAll(
+            'input[type="radio"]:checked'
+          );
+
+          radioGroups.forEach((radio) => {
+            selectedAnswers.push(parseInt(radio.value));
+          });
+
+          fetch('http://localhost:3000/submit', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ answers: selectedAnswers }),
+          })
+            .then((response) => response.json())
+            .then((result) => {
+              const feedbackContainer = document.createElement('div');
+              feedbackContainer.classList.add('feedback-container');
+
+              // Display user's score
+              const scoreDisplay = document.createElement('p');
+              scoreDisplay.textContent = `Your score: ${result.score}`;
+              feedbackContainer.appendChild(scoreDisplay);
+
+              // Display feedback for each question
+              result.feedback.forEach((feedbackItem, index) => {
+                const feedbackItemElement = document.createElement('div');
+                feedbackItemElement.classList.add('feedback-item');
+                feedbackItemElement.innerHTML = `
+          <p><strong>Question ${index + 1}:</strong> ${
+                  feedbackItem.question
+                }</p>
+          <p><strong>Correct:</strong> ${
+            feedbackItem.correct ? 'Yes' : 'No'
+          }</p>
+          ${
+            !feedbackItem.correct
+              ? `<p><strong>Correct Answer:</strong> ${feedbackItem.correctAnswer}</p>`
+              : ''
+          }
+        `;
+                feedbackContainer.appendChild(feedbackItemElement);
+              });
+
+              // Append feedback container to the document body
+              document.body.appendChild(feedbackContainer);
+            })
+            .catch((error) => {
+              console.error('Error submitting answers:', error);
+            });
+        });
       });
     </script>
   </body>

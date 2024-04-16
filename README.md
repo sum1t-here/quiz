@@ -1,4 +1,4 @@
-## Instruction tto set up locally
+## Instruction to set up locally
 
 - #### Run the server
 
@@ -6,3 +6,5 @@
         - then run `node index.js`
 
 - #### Run the html file ` index.html`
+
+- Click on the submit button below to submit the answer and scroll below to view the feedback
