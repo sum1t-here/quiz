@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Node js Quiz</h1>
+    <div id="quiz-container"></div>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Fetch quiz questions from the backend
+        fetch('http://localhost:3000/quiz')
+          .then((response) => response.json())
+          .then((questions) => {
+            const quizContainer = document.getElementById('quiz-container');
+
+            // Loop through each question and display it
+            questions.forEach((question, index) => {
+              const questionElement = document.createElement('div');
+              questionElement.innerHTML = `
+            <h2>Question ${index + 1}:</h2>
+            <p>${question.question}</p>
+            <ul style="list-style-type: none;">
+              ${question.choices
+                .map(
+                  (choice, choiceIndex) =>
+                    `<li><input type="radio" name="question-${index}" value="${choiceIndex}"/>${choice}</li>`
+                )
+                .join('')}
+            </ul>
+          `;
+              quizContainer.appendChild(questionElement);
+            });
+          })
+          .catch((error) => {
+            console.error('Error fetching quiz:', error);
+          });
+      });
+    </script>
+  </body>
+</html>
